@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'posts/style.css'%}" />
+    <title>Heestagram</title>
+  </head>
+  <body>
+    <img id="profile" src="{% static 'posts/images/nara.jpg' %}" alt="nara" />
+
+    <div class="profile_bg"></div>
+
+    <h1>Posts</h1>
+    <!-- <p>Numbers: {{ numbers.0 }}</p>
+    <p>User: {{ user.name }}</p>
+    <ul>
+      <li>{{ post }}</li>
+    </ul> -->
+    {% if posts %}
+    <ul>
+      {% for post in posts %}
+      <li>Author: {{ post.author }} | Body: {{ post.body }}</li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No Posts.</p>
+    {% endif %}
+  </body>
+</html>
