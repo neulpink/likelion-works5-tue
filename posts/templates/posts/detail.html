@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'posts/style.css'%}" />
+    <title>Heestagram</title>
+  </head>
+  <body>
+    <h1>Post Detail</h1>
+
+    {% if post %}
+      <h2>작성자</h2>
+      <p>{{ post.author }}</p>
+
+      <h2>본문</h2>
+      <p>{{ post.body }}</p>
+
+      <h2>게시일</h2>
+      <p>{{ post.created_at }}</p>
+    {% else %}
+      <p>No Post.</p>
+    {% endif %}
+
+    <a href="{% url 'posts:index' %}">목록</a>
+  </body>
+</html>
