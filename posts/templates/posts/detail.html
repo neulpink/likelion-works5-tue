@@ -1,31 +1,28 @@
+{% extends "base.html" %}
+
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'posts/style.css'%}" />
-    <title>Heestagram</title>
-  </head>
-  <body>
-    <h1>Post Detail</h1>
+{% block style %}
+  <link rel="stylesheet" href="{% static 'posts/style.css'%}" />
+{% endblock %}
 
-    {% if post %}
-      <h2>작성자</h2>
-      <p>{{ post.author }}</p>
+{% block content %}
+  <h1>Post Detail</h1>
 
-      <h2>본문</h2>
-      <p>{{ post.body }}</p>
+  {% if post %}
+    <h2>작성자</h2>
+    <p>{{ post.author }}</p>
 
-      <h2>게시일</h2>
-      <p>{{ post.created_at }}</p>
-    {% else %}
-      <p>No Post.</p>
-    {% endif %}
+    <h2>본문</h2>
+    <p>{{ post.body }}</p>
 
-    <a href="{% url 'posts:index' %}">목록</a>
-    <a href="{% url 'posts:edit' post.id %}">수정하기</a>
-    <a href="{% url 'posts:delete' post.id %}">삭제하기</a>
-  </body>
-</html>
+    <h2>게시일</h2>
+    <p>{{ post.created_at }}</p>
+  {% else %}
+    <p>No Post.</p>
+  {% endif %}
+
+  <a href="{% url 'posts:index' %}">목록</a>
+  <a href="{% url 'posts:edit' post.id %}">수정하기</a>
+  <a href="{% url 'posts:delete' post.id %}">삭제하기</a>
+{% endblock %}

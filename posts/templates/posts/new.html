@@ -1,29 +1,26 @@
+{% extends "base.html" %}
+
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'posts/style.css'%}" />
-    <title>Heestagram</title>
-  </head>
-  <body>
-    <h1>New Post</h1>
+{% block style %}
+  <link rel="stylesheet" href="{% static 'posts/style.css'%}" />
+{% endblock %}
 
-    <form action="{% url 'posts:create' %}" method="POST">
-      {% csrf_token %}
+{% block content %}
+  <h1>New Post</h1>
 
-      <h2>작성자</h2>
-      <input type="text" name="author" />
+  <form action="{% url 'posts:create' %}" method="POST">
+    {% csrf_token %}
 
-      <h2>본문</h2>
-      <textarea cols="40" rows="10" name="body"></textarea>
+    <h2>작성자</h2>
+    <input type="text" name="author" />
 
-      <br />
-      <input type="submit" value="작성하기">
-    </form>
+    <h2>본문</h2>
+    <textarea cols="40" rows="10" name="body"></textarea>
 
-    <a href="{% url 'posts:index' %}">목록</a>
-  </body>
-</html>
+    <br />
+    <input type="submit" value="작성하기">
+  </form>
+
+  <a href="{% url 'posts:index' %}">목록</a>
+{% endblock %}

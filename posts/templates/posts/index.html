@@ -1,43 +1,40 @@
+{% extends "base.html" %}
+
 {% load static %}
 
-<!DOCTYPE html>
-<html lang="ko">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="{% static 'posts/style.css'%}" />
-    <title>Heestagram</title>
-  </head>
-  <body>
-    <h1>Posts</h1>
+{% block style %}
+  <link rel="stylesheet" href="{% static 'posts/style.css'%}" />
+{% endblock %}
 
-    {% if posts %}
-      <table>
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>작성자</th>
-            <th>본문</th>
-            <th>게시일</th>
-            <th>상세</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for post in posts %}
-            <tr>
-              <th>{{ post.id }}</th>
-              <td>{{ post.author }}</td>
-              <td>{{ post.body }}</td>
-              <td>{{ post.created_at }}</td>
-              <td><a href="{% url 'posts:detail' post.id %}">보기</a></td>
-            </tr>
-          {% endfor %}
-        </tbody>
-      </table>
-    {% else %}
-      <p>No Posts.</p>
-    {% endif %}
+{% block content %}
+  <h1>Posts</h1>
 
-    <a href="{% url 'posts:new' %}">글쓰기</a>
-  </body>
-</html>
+  {% if posts %}
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>작성자</th>
+        <th>본문</th>
+        <th>게시일</th>
+        <th>상세</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for post in posts %}
+      <tr>
+        <th>{{ post.id }}</th>
+        <td>{{ post.author }}</td>
+        <td>{{ post.body }}</td>
+        <td>{{ post.created_at }}</td>
+        <td><a href="{% url 'posts:detail' post.id %}">보기</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+    <p>No Posts.</p>
+  {% endif %}
+
+  <a href="{% url 'posts:new' %}">글쓰기</a>
+{% endblock %}
