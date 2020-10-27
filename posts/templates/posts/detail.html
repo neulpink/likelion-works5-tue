@@ -25,5 +25,7 @@
     {% endif %}
 
     <a href="{% url 'posts:index' %}">목록</a>
+    <a href="{% url 'posts:edit' post.id %}">수정하기</a>
+    <a href="{% url 'posts:delete' post.id %}">삭제하기</a>
   </body>
 </html>

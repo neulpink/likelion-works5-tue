@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="{% static 'posts/style.css'%}" />
+  <title>Heestagram</title>
+</head>
+
+<body>
+  <h1>Edit Post</h1>
+
+  <form action="{% url 'posts:update' post.id %}" method="POST">
+    {% csrf_token %}
+
+    <h2>작성자</h2>
+    <input type="text" name="author" value="{{ post.author }}"/>
+
+    <h2>본문</h2>
+    <textarea cols="40" rows="10" name="body">{{ post.body }}</textarea>
+
+    <br />
+    <input type="submit" value="수정하기">
+  </form>
+
+  <a href="{% url 'posts:index' %}">목록</a>
+</body>
+
+</html>
