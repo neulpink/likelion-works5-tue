@@ -7,34 +7,36 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Posts</h1>
+  <div class="container">
+    <h1>Posts</h1>
 
-  {% if posts %}
-  <table>
-    <thead>
-      <tr>
-        <th>#</th>
-        <th>작성자</th>
-        <th>본문</th>
-        <th>게시일</th>
-        <th>상세</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% for post in posts %}
-      <tr>
-        <th>{{ post.id }}</th>
-        <td>{{ post.author }}</td>
-        <td>{{ post.body }}</td>
-        <td>{{ post.created_at }}</td>
-        <td><a href="{% url 'posts:detail' post.id %}">보기</a></td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-  {% else %}
-    <p>No Posts.</p>
-  {% endif %}
+    {% if posts %}
+    <table class="table">
+      <thead class="thead-dark">
+        <tr>
+          <th>#</th>
+          <th>작성자</th>
+          <th>본문</th>
+          <th>게시일</th>
+          <th>상세</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for post in posts %}
+        <tr>
+          <th>{{ post.id }}</th>
+          <td>{{ post.author }}</td>
+          <td>{{ post.body }}</td>
+          <td>{{ post.created_at }}</td>
+          <td><a href="{% url 'posts:detail' post.id %}">보기</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+    {% else %}
+      <p>No Posts.</p>
+    {% endif %}
 
-  <a href="{% url 'posts:new' %}">글쓰기</a>
+    <a href="{% url 'posts:new' %}">글쓰기</a>
+  </div>
 {% endblock %}
