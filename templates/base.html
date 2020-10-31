@@ -15,6 +15,27 @@
     {% endblock %}
   </head>
   <body>
+    {% if user.is_authenticated %}
+      <div class="container">
+        <form action="{% url 'accounts:logout' %}" method="POST">
+          {% csrf_token %}
+      
+          {{ user.get_username }}님 환영합니다.
+          <button type="submit" class="btn btn-primary">LOGOUT</button>
+        </form>
+      </div>
+    {% else %}
+      <div class="container">
+        <a href="{% url 'accounts:login' %}">
+          <button type="submit" class="btn btn-primary">LOGIN</button>
+        </a>
+
+        <a href="{% url 'accounts:sign_up' %}">
+          <button type="submit" class="btn btn-primary">SIGN UP</button>
+        </a>
+      </div>
+    {% endif %}
+
     {% block content %}
     {% endblock %}
 

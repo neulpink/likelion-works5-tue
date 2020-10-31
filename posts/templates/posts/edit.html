@@ -7,20 +7,25 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Edit Post</h1>
+  <div class="container">
+    <h1>Edit Post</h1>
 
-  <form action="{% url 'posts:update' post.id %}" method="POST">
-    {% csrf_token %}
+    <form action="{% url 'posts:update' post.id %}" method="POST">
+      {% csrf_token %}
 
-    <h2>작성자</h2>
-    <input type="text" name="author" value="{{ post.author }}" />
+      <div class="form-group">
+        <label for="author">작성자</label>
+        <input class="form-control" type="text" name="author" value="{{ post.author }}" />
+      </div>
 
-    <h2>본문</h2>
-    <textarea cols="40" rows="10" name="body">{{ post.body }}</textarea>
+      <div class="form-group">
+        <label for="body">본문</label>
+        <textarea class="form-control" id="body" cols="40" rows="10" name="body">{{ post.body }}</textarea>
+      </div>
 
-    <br />
-    <input type="submit" value="수정하기">
-  </form>
+      <button type="submit" class="btn btn-primary">수정하기</button>
+    </form>
 
-  <a href="{% url 'posts:index' %}">목록</a>
+    <a href="{% url 'posts:index' %}">목록</a>    
+  </div>
 {% endblock %}

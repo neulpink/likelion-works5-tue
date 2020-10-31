@@ -7,22 +7,23 @@
 {% endblock %}
 
 {% block content %}
-  <h1>Post Detail</h1>
+  <div class="container">
+    <h1>Post Detail</h1>
 
-  {% if post %}
-    <h2>작성자</h2>
-    <p>{{ post.author }}</p>
+    <div class="form-group">
+      <label for="author">작성자</label>
+      <input readonly class="form-control-plaintext" type="text" name="author" value="{{ post.author }}" />
+    </div>
 
-    <h2>본문</h2>
-    <p>{{ post.body }}</p>
+    <div class="form-group">
+      <label for="body">본문</label>
+      <textarea readonly class="form-control-plaintext" id="body" cols="40" rows="10" name="body">{{ post.body }}</textarea>
+    </div>
 
-    <h2>게시일</h2>
-    <p>{{ post.created_at }}</p>
-  {% else %}
-    <p>No Post.</p>
-  {% endif %}
+    <div>{{ post.created_at }}</div>
 
-  <a href="{% url 'posts:index' %}">목록</a>
-  <a href="{% url 'posts:edit' post.id %}">수정하기</a>
-  <a href="{% url 'posts:delete' post.id %}">삭제하기</a>
+    <a href="{% url 'posts:index' %}">목록</a>
+    <a href="{% url 'posts:edit' post.id %}">수정하기</a>
+    <a href="{% url 'posts:delete' post.id %}">삭제하기</a>
+  </div>
 {% endblock %}
