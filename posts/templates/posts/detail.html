@@ -23,7 +23,9 @@
     <div>{{ post.created_at }}</div>
 
     <a href="{% url 'posts:index' %}">목록</a>
-    <a href="{% url 'posts:edit' post.id %}">수정하기</a>
-    <a href="{% url 'posts:delete' post.id %}">삭제하기</a>
+    {% if user == post.user %}
+      <a href="{% url 'posts:edit' post.id %}">수정하기</a>
+      <a href="{% url 'posts:delete' post.id %}">삭제하기</a>
+    {% endif %}
   </div>
 {% endblock %}

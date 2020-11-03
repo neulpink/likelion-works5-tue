@@ -14,11 +14,6 @@
       {% csrf_token %}
 
       <div class="form-group">
-        <label for="author">작성자</label>
-        <input class="form-control" type="text" name="author" value="{{ post.author }}" />
-      </div>
-
-      <div class="form-group">
         <label for="body">본문</label>
         <textarea class="form-control" id="body" cols="40" rows="10" name="body">{{ post.body }}</textarea>
       </div>
