@@ -10,6 +10,7 @@ class Post(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
     body = models.TextField()
     created_at = models.DateTimeField()
+    liked_users = models.ManyToManyField(User, related_name='liked_posts')
 
     def __str__(self):
         if self.user:

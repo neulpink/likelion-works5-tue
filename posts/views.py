@@ -74,3 +74,23 @@ def delete(request, post_id):
     post.delete()
 
     return redirect('posts:index')
+
+
+@login_required
+def like(request, post_id):
+
+    if request.method == 'POST':
+        try:
+            post = Post.objects.get(id=post_id)
+
+            if request.user in post.liked_users.all():
+                post.liked_users.remove(request.user)
+            else:
+                post.liked_users.add(request.user)
+
+            return redirect('posts:detail', post_id=post.id)
+
+        except Post.DoesNotExist:
+            pass
+
+    return redirect('posts:index')

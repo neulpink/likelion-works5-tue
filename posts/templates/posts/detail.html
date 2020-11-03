@@ -22,6 +22,20 @@
 
     <div>{{ post.created_at }}</div>
 
+    <div>좋아요 수: {{ post.liked_users.count }}</div>
+
+    {% if user.is_authenticated %}
+      <form action="{% url 'posts:like' post.id %}" method="POST">
+        {% csrf_token %}
+
+        {% if user in post.liked_users.all %}
+          <button type="submit" class="btn btn-primary">LIKE</button>
+        {% else %}
+          <button type="submit" class="btn btn-secondary">LIKE</button>
+        {% endif %}
+      </form>
+    {% endif %}
+
     <a href="{% url 'posts:index' %}">목록</a>
     {% if user == post.user %}
       <a href="{% url 'posts:edit' post.id %}">수정하기</a>
