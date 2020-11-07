@@ -124,3 +124,10 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / "static"
 ]
+
+# Media File 이 저장될 경로
+MEDIA_ROOT = BASE_DIR / 'media'
+
+# MEDIA_ROOT 에 저장된 File이 제공될 Base URL 경로.
+# 반드시 마지막에 / 로 끝나야 함
+MEDIA_URL = '/media/'

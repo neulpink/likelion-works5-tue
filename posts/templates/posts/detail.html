@@ -10,6 +10,12 @@
   <div class="container">
     <h1>Post Detail</h1>
 
+    {% if post.image %}
+      <div>
+        <img src="{{ post.image.url }}" alt="Post Image" />
+      </div>
+    {% endif %}
+
     <div class="form-group">
       <label for="author">작성자</label>
       <input readonly class="form-control-plaintext" type="text" name="author" value="{{ post.user.get_username }}" />

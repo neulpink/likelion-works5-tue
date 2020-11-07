@@ -34,7 +34,12 @@ def create(request):
 
     user = request.user
     body = request.POST['body']
-    post = Post(user=user, body=body, created_at=timezone.now())
+
+    image = None
+    if 'image' in request.FILES:
+        image = request.FILES['image']
+
+    post = Post(user=user, body=body, image=image, created_at=timezone.now())
     post.save()
 
     return redirect('posts:detail', post_id=post.id)
@@ -59,6 +64,10 @@ def update(request, post_id):
         return redirect('posts:index')
 
     post.body = request.POST['body']
+
+    if 'image' in request.FILES:
+        post.image = request.FILES['image']
+
     post.save()
 
     return redirect('posts:detail', post_id=post.id)
